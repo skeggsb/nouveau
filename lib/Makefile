@@ -55,19 +55,23 @@ $(deps-src): $(lib)/%.d : $(lib)/%.c
 $(filter %.fuc0s.h,$(fucs)): %.fuc0s.h : %.fuc0s
 	@echo "  FUC0S    "$@
 	@$(call ENVYPP,$<) | $(ENVYAS) -a -w -mfuc -Vfuc0 -Fcrypt -o $@
-	@sed -i -e 's:^uint32_t:static uint32_t:g' $@
+	@sed -i -e 's:^uint32_t:static uint32_t:g' \
+		-e '1s:^:/* SPDX-License-Identifier\: MIT */\n:' $@
 $(filter %.fuc3.h,$(fucs)): %.fuc3.h : %.fuc3
 	@echo "  FUC3     "$@
 	@$(call ENVYPP,$<) | $(ENVYAS) -a -w -mfuc -Vfuc3 -o $@
-	@sed -i -e 's:^uint32_t:static uint32_t:g' $@
+	@sed -i -e 's:^uint32_t:static uint32_t:g' \
+		-e '1s:^:/* SPDX-License-Identifier\: MIT */\n:' $@
 $(filter %.fuc4.h,$(fucs)): %.fuc4.h : %.fuc4
 	@echo "  FUC4     "$@
 	@$(call ENVYPP,$<) | $(ENVYAS) -a -w -mfuc -Vfuc4 -o $@
-	@sed -i -e 's:^uint32_t:static uint32_t:g' $@
+	@sed -i -e 's:^uint32_t:static uint32_t:g' \
+		-e '1s:^:/* SPDX-License-Identifier\: MIT */\n:' $@
 $(filter %.fuc5.h,$(fucs)): %.fuc5.h : %.fuc5
 	@echo "  FUC5     "$@
 	@$(call ENVYPP,$<) | $(ENVYAS) -a -w -mfuc -Vfuc5 -o $@
-	@sed -i -e 's:^uint32_t:static uint32_t:g' $@
+	@sed -i -e 's:^uint32_t:static uint32_t:g' \
+		-e '1s:^:/* SPDX-License-Identifier\: MIT */\n:' $@
 
 $(drms): $(lib)/%.o : $(drm)/%.c
 	@echo "  CC       "$@
