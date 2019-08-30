@@ -473,6 +473,7 @@ ktime_to_us(ktime_t kt)
 static inline int
 kstrtol(const char *s, unsigned int base, long *res)
 {
+	errno = 0;
 	*res = strtol(s, NULL, base);
 	if (errno && *res == LONG_MAX)
 		return errno;
@@ -484,6 +485,7 @@ kstrtol(const char *s, unsigned int base, long *res)
 static inline int
 kstrtoul(const char *s, unsigned int base, unsigned long *res)
 {
+	errno = 0;
 	*res = strtoul(s, NULL, base);
 	if (errno && *res == ULONG_MAX)
 		return errno;
