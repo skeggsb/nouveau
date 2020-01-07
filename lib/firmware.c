@@ -40,7 +40,7 @@ request_firmware_(const struct firmware **pfw, const char *prefix,
 	if (fd >= 0) {
 		off_t len = lseek(fd, 0, SEEK_END);
 		fw->data = malloc(len);
-		fw->size = pread(fd, fw->data, len, 0);
+		fw->size = pread(fd, (void *)fw->data, len, 0);
 		return 0;
 	}
 
@@ -62,6 +62,8 @@ request_firmware(const struct firmware **pfw, const char *name,
 void
 release_firmware(const struct firmware *fw)
 {
-	free(fw->data);
-	free((void *)fw);
+	if (fw) {
+		free((void *)fw->data);
+		free((void *)fw);
+	}
 }

@@ -1336,7 +1336,7 @@ struct sg_table {
 
 struct firmware {
 	size_t size;
-	void *data;
+	const u8 *data;
 };
 
 int request_firmware(const struct firmware **, const char *, struct device *);
