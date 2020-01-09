@@ -1037,6 +1037,16 @@ iommu_unmap(struct iommu_domain *domain, unsigned long iova, size_t size)
 	return 0;
 }
 
+struct iommu_fwspec {
+	u32 ids[1];
+};
+
+static inline struct iommu_fwspec *
+dev_iommu_fwspec_get(struct device *dev)
+{
+	return NULL;
+}
+
 /******************************************************************************
  * DMA
  *****************************************************************************/
