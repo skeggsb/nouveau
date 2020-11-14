@@ -222,6 +222,7 @@ struct nouveau_drm {
 
 	struct {
 		struct drm_audio_component *component;
+		struct mutex lock;
 		bool component_registered;
 	} audio;
 };
